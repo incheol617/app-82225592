@@ -15,6 +15,6 @@ images:
 - name: ceappacr.azurecr.io/app-82225592
   newTag: "202408120727"
 - name: ceappacr.azurecr.io/app-8225592
-  newTag: "202411280747"
+  newTag: "202411280754"
 - name: ceappacr.azurecr.io/troubleshooting
   newTag: latest
