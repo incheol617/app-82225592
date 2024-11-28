@@ -3,7 +3,7 @@ name: Java CI with Maven
 on: workflow_dispatch
 
 env:
-  IMAGE_NAME: app-8225592
+  IMAGE_NAME: app-82225592
 
 jobs:
   build:
@@ -34,14 +34,14 @@ jobs:
     - name: 'ACR login'
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.CICD_LOGIN_SERVER }}
-        username: ${{ secrets.CICD_USER }}
-        password: ${{ secrets.CICD_PASSWORD }}
+        login-server: ${{ secrets.BASEACR_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
 
     - name: 'Build & Tag Image'
       run: |
-            docker build -t ${{ secrets.CICD_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
-            docker tag ${{ secrets.CICD_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ secrets.CICD_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+            docker build -t ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
+            docker tag ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ secrets.CICD_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
     - name: 'Push image'
       uses: azure/docker-login@v1

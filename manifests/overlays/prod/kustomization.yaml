@@ -12,5 +12,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namePrefix: prod-
 images:
-- name: ceappacr.azurecr.io/app-8225592
+- name: ceappacr.azurecr.io/app-82225592
   newTag: "202411280931"
